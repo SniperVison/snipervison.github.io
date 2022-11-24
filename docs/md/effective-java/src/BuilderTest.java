@@ -4,7 +4,7 @@
  * 建造者模式
  * 2. 遇到多个构造器参数时要考虑使用构建器
  */
-public class Animal {
+public class BuilderTest {
     private int age;
 
     private String name;
@@ -45,7 +45,7 @@ public class Animal {
         this.type = type;
     }
 
-    private Animal(Builder builder) {
+    private BuilderTest(Builder builder) {
         age = builder.age;
         name = builder.name;
         weight = builder.weight;
@@ -62,8 +62,8 @@ public class Animal {
 
         private String type;
 
-        public Animal build() {
-            return new Animal(this);
+        public BuilderTest build() {
+            return new BuilderTest(this);
         }
 
         public Builder age(int val) {
