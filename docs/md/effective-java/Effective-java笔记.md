@@ -252,3 +252,22 @@ public interface Test{
 
 #### 29 优先考虑泛型
 
+- 为了提升性能，有些泛型是使用数组实现的，如ArrayList, HashMap
+- 优先使用泛型而不是Object类型，可以在编译期间避免类型转换错误，也减少了强转类型的代码，更加安全和易于操作
+```java
+   // ArrayList 声明的Object数组
+   transient Object[] elementData
+   // 获取元素的方法，也进行强转类型
+   @SuppressWarnings("unchecked")
+    E elementData(int index) {
+        return (E) elementData[index];
+    }
+```
+
+#### 30 优先考虑泛型方法
+
+#### 31 使用限定通配符来增加API的灵活性
+
+- Collection <? extend E>
+- Collection <? super E>
+
