@@ -271,3 +271,15 @@ public interface Test{
 - Collection <? extend E>
 - Collection <? super E>
 
+#### 32 合理结合使用泛型和可变参数
+
+```java
+    @SafeVarargs // 通过方法的设计者做出承诺，声明这是类型安全的
+    @SuppressWarnings("varargs")
+    public static <T> List<T> asList(T... a) {
+        return new ArrayList<>(a);
+    }
+```
+#### 33 优先考虑类型安全的异构容器
+- 集合API说明泛型，通常用于限制每个容器只能有固定数目的类型参数。但是可以通过类型参数放在键上而不是容器上来规避这个限制，以Class对象（对象的key可以是不同类型，这样的对象称为类型安全的异构容器）作为key
+- 例子,如：java.util.Collections.CheckedCollection/CheckedQueue/CheckedSet/CheckedSortedSet/CheckedList/CheckedMap等。put操作时，将value的类型 与key的类型 进行instance判断； get操作时，讲value使用Class.cast()进行类型转换，匹配key的类型
